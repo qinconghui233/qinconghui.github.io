@@ -80,3 +80,39 @@ js跨域是指通过js在不同的域之间进行数据传输或通信
 如何调度进程和线程，完全由操作系统决定，程序自己不能决定什么时候执行，执行多长时间。
 
 进程指计算机中已运行的程序，线程指错做系统能够进行运算的最小单位
+
+## 死锁是什么
+
+当两个以上的运算单元，双方都在等待对方停止运行，以获取系统资源，但是没有一方提前退出时，就成为死锁
+
+## this
+### this的指向是什么？
+定义：this的指向是包含它的函数作为方法被调用时所属的对象。
+
+### 如何修改this的指向
+
+    (1)使用局部变量来代替this指针
+(2)使用call或apply方法
+call 普通传参
+function say(arg1,arg2){
+  console.log(this.name,arg1,arg2);
+};
+var obj = {
+  name : 'tom',
+  say : function(){
+    console.log(this.name);
+  }
+}
+say.call(obj,'one','two');//tom one two
+
+apply 以数组的形式传参
+function say(arg1,arg2){
+  console.log(this.name,arg1,arg2);
+};
+var obj = {
+  name : 'tom',
+  say : function(){
+    console.log(this.name);
+  }
+}
+say.apply(obj,['one','two']);//tom one two
