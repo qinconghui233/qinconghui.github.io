@@ -13,14 +13,11 @@ null、boolean、string、undefined、number、symbol(ES6新加)
 
 ## 箭头函数与function函数的区别
 1、function函数与箭头函数的定义写法不同
-<pre>
-<code>
-function fn(a,b){
-    return a + b;
-}
 
-var foo = (a,b)=>{
+    function fn(a,b){
     return a + b;
-};
-</code>
-</pre>
+    }
+
+    var foo = (a,b)=>{
+    return a + b;
+    };
