@@ -102,7 +102,9 @@ js跨域是指通过js在不同的域之间进行数据传输或通信
     (1)使用局部变量来代替this指针
     (2)使用call或apply方法
     call 普通传参
-    function say(arg1,arg2){
+    ```
+
+    <pre><code class="language-javascript">function say(arg1,arg2){
         console.log(this.name,arg1,arg2);
     };
     var obj = {
@@ -123,7 +125,8 @@ js跨域是指通过js在不同的域之间进行数据传输或通信
     }
     }
     say.apply(obj,['one','two']);//tom one two
-
+    </code></pre>
+```
 ## promise
 
 Promise最大的好处是在异步执行的流程中，把执行代码和处理结果的代码清晰地分离了
@@ -144,7 +147,7 @@ Promise对象的缺点：
 
 
 ```
-<pre><code>const promise = new Promise(function(resolve, reject) {
+<pre><code class="language-javascript">const promise = new Promise(function(resolve, reject) {
   // ... some code
 
   if (/* 异步操作成功 */){
@@ -173,7 +176,7 @@ yield表达式本身没有返回值，或者说总是返回undefined。
 next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。
 
 ```
-<pre><code>function * foo(x) {
+<pre><code class="language-javascript">function * foo(x) {
 
     var y = 2 * (yield (x + 1));
 
