@@ -11,6 +11,14 @@ tags: 网络 前端开发
 ## javascript数据基本类型有哪些？
 null、boolean、string、undefined、number、symbol(ES6新加)
 
+## const var let
+
+const定义的变量不可以修稿，而且必须初始化
+
+var定义的变量可以修改，如果不初始化会输出undefined，不会报错
+
+let是快级作用域
+
 ## 箭头函数与function函数的区别
 1.function函数与箭头函数的定义写法不同
 
@@ -122,9 +130,21 @@ Promise最大的好处是在异步执行的流程中，把执行代码和处理�
 
 有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，Promise对象提供统一的接口，使得控制异步操作更加容易。
 
+Promise有三种状态：pending(进行中)、resolved(成功)、rejected(失败)
+
+Promise对象的缺点：
+
+1、无法取消Promise，一旦新建它就会立即执行，无法中途取消。
+
+2、如果不设置回调函数，Promise内部抛出的错误，不会反应到外部。
+
+3、当处于Pending状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。
+
+4、Promise 真正执行回调的时候，定义 Promise 那部分实际上已经走完了，所以 Promise 的报错堆栈上下文不太友好。
+
+
 ```
-<pre><code>
-const promise = new Promise(function(resolve, reject) {
+<pre><code>const promise = new Promise(function(resolve, reject) {
   // ... some code
 
   if (/* 异步操作成功 */){
@@ -132,6 +152,42 @@ const promise = new Promise(function(resolve, reject) {
   } else {
     reject(error);
   }
-});
-</code></pre>
+});</code></pre>
+```
+### async promise generator
+
+async/await是基于promise实现的，他不能用于普通的回调函数
+
+async/await使得异步代码看起来像同步代码
+
+async/await与Promise一样，是非阻塞的。
+
+Generator 是ES6引入的新语法，Generator是一个可以暂停和继续执行的函数。
+
+简单的用法，可以当做一个Iterator来用，进行一些遍历操作。复杂一些的用法，他可以在内部保存一些状态，成为一个状态机。
+
+Generator 基本语法包含两部分：函数名前要加一个星号；函数内部用 yield 关键字返回值。
+
+yield表达式本身没有返回值，或者说总是返回undefined。
+
+next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。
+
+```
+<pre><code>function * foo(x) {
+
+    var y = 2 * (yield (x + 1));
+
+    var z = yield (y / 3);
+
+    return (x + y + z);
+
+}
+
+var b = foo(5); 
+
+b.next() // { value:6, done:false }
+
+b.next(12) // { value:8, done:false } 
+
+b.next(13) // { value:42, done:true }</code></pre>
 ```
