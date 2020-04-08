@@ -19,6 +19,19 @@ var定义的变量可以修改，如果不初始化会输出undefined，不会�
 
 let是快级作用域
 
+## JS执行三部曲：语法分析 预编译 解释执行
+
+函数声明整体提升指的是当你使用了函数声明，那么函数声明默认会提升至script顶部
+
+imply global 暗示全局变量：即任何变量未经声明就赋值，那么这个变量就为全局对象所有。全局变量指的是window
+
+### 预编译
+1.创建AO对象 Activation Object（执行期上下文）
+2.找形参和变量声明，将变量和形参名作为AO对象的属性名，值为undefined
+3.将实参形参相统一
+4.在函数体里找到函数声明，把函数声明当做值赋予函数体
+
+function fn(){}这种形式才叫做函数声明，而var fn = function(){}j叫做函数表达式
 ## 箭头函数与function函数的区别
 1.function函数与箭头函数的定义写法不同
 
@@ -99,11 +112,9 @@ js跨域是指通过js在不同的域之间进行数据传输或通信
 
 ### 如何修改this的指向
 
-    (1)使用局部变量来代替this指针
-    (2)使用call或apply方法
-    call 普通传参
-    
-
+(1)使用局部变量来代替this指针
+(2)使用call或apply方法
+call 普通传参
     <pre><code class="language-javascript">function say(arg1,arg2){
         console.log(this.name,arg1,arg2);
     };
@@ -214,3 +225,12 @@ stopPropagation就是阻止目标元素的事件冒泡到父级元素。
 preventDefault它是事件对象(Event)的一个方法，作用是取消一个目标元素的默认行为。
 
 元素必须有默认行为才能被取消，如果元素本身就没有默认行为，调用当然就无效了。
+
+## 链表反转
+1.就地反转发
+2.头节点插入法
+
+## 会改变作用域链的三种方法
+1.eval() 函数
+2.with()
+3.try-catch
