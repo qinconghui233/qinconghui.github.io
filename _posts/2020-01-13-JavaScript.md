@@ -73,20 +73,7 @@ function fn(){}这种形式才叫做函数声明，而var fn = function(){}j叫�
 
 闭包的用途：可以读取函数内部的变量，并且让这些变量的值始终保持在内存中。
 
-## 跨域问题如何解决
 
-同源策略：浏览器安全策略，同协议、ip、端口的脚本才会执行。只要协议、域名、端口有任何一个不同，都被当作是不同的域。
-
-js跨域是指通过js在不同的域之间进行数据传输或通信
-
-    1. 通过jsonp跨域
-    jsonp在页面上引入不同域上的js脚本文件实现请求不同域上的数据
-    (1) 通过script标签引入一个js文件
-    (2) js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入
-    注：需要服务器端的页面进行相应的配合
-    2. 通过修改document.domain来跨子域
-    3. 使用window.name来进行跨域
-    window对象有个name属性，该属性有个特征：即在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的，并不会因新页面的载入而进行重置。
 
 ### babel可以实现将ES6编译为ES5代码
 
@@ -234,3 +221,35 @@ preventDefault它是事件对象(Event)的一个方法，作用是取消一个�
 1.eval() 函数
 2.with()
 3.try-catch
+
+
+[Array.prototype.flat()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/flat)
+
+### css选择器及权重
+1、ID　　#id
+
+2、class　　.class
+
+3、标签　　p
+
+4、通用　　*
+
+5、属性　　[type="text"]
+
+6、伪类　　：hover
+
+7、伪元素　　::first-line
+
+8、子选择器、相邻选择器
+
+1. 第一等：代表内联样式，如: style=””，权值为1000。
+
+2. 第二等：代表ID选择器，如：#content，权值为0100。
+
+3. 第三等：代表类，伪类和属性选择器，如.content，权值为0010。
+
+4. 第四等：代表类型选择器和伪元素选择器，如div p，权值为0001。
+
+5. 通配符、子选择器、相邻选择器等的。如*、>、+,权值为0000。
+
+6. 继承的样式没有权值。
