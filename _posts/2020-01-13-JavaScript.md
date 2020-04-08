@@ -92,27 +92,46 @@ js跨域是指通过js在不同的域之间进行数据传输或通信
 ### 如何修改this的指向
 
     (1)使用局部变量来代替this指针
-(2)使用call或apply方法
-call 普通传参
-function say(arg1,arg2){
-  console.log(this.name,arg1,arg2);
-};
-var obj = {
-  name : 'tom',
-  say : function(){
-    console.log(this.name);
-  }
-}
-say.call(obj,'one','two');//tom one two
+    (2)使用call或apply方法
+    call 普通传参
+    function say(arg1,arg2){
+        console.log(this.name,arg1,arg2);
+    };
+    var obj = {
+        name : 'tom',
+        say : function(){
+        console.log(this.name);
+         }
+    }
+    say.call(obj,'one','two');//tom one two
+    apply 以数组的形式传参
+    function say(arg1,arg2){
+    console.log(this.name,arg1,arg2);
+    };
+    var obj = {
+    name : 'tom',
+    say : function(){
+     console.log(this.name);
+    }
+    }
+    say.apply(obj,['one','two']);//tom one two
 
-apply 以数组的形式传参
-function say(arg1,arg2){
-  console.log(this.name,arg1,arg2);
-};
-var obj = {
-  name : 'tom',
-  say : function(){
-    console.log(this.name);
+## promise
+
+Promise最大的好处是在异步执行的流程中，把执行代码和处理结果的代码清晰地分离了
+
+有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，Promise对象提供统一的接口，使得控制异步操作更加容易。
+
+```
+<pre><code>
+const promise = new Promise(function(resolve, reject) {
+  // ... some code
+
+  if (/* 异步操作成功 */){
+    resolve(value);
+  } else {
+    reject(error);
   }
-}
-say.apply(obj,['one','two']);//tom one two
+});
+</code></pre>
+```
