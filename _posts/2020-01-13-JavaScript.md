@@ -102,7 +102,7 @@ js跨域是指通过js在不同的域之间进行数据传输或通信
     (1)使用局部变量来代替this指针
     (2)使用call或apply方法
     call 普通传参
-    ```
+    
 
     <pre><code class="language-javascript">function say(arg1,arg2){
         console.log(this.name,arg1,arg2);
@@ -126,7 +126,7 @@ js跨域是指通过js在不同的域之间进行数据传输或通信
     }
     say.apply(obj,['one','two']);//tom one two
     </code></pre>
-```
+
 ## promise
 
 Promise最大的好处是在异步执行的流程中，把执行代码和处理结果的代码清晰地分离了
@@ -146,7 +146,7 @@ Promise对象的缺点：
 4、Promise 真正执行回调的时候，定义 Promise 那部分实际上已经走完了，所以 Promise 的报错堆栈上下文不太友好。
 
 
-```
+
 <pre><code class="language-javascript">const promise = new Promise(function(resolve, reject) {
   // ... some code
 
@@ -156,7 +156,7 @@ Promise对象的缺点：
     reject(error);
   }
 });</code></pre>
-```
+
 ### async promise generator
 
 async/await是基于promise实现的，他不能用于普通的回调函数
@@ -175,7 +175,7 @@ yield表达式本身没有返回值，或者说总是返回undefined。
 
 next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。
 
-```
+
 <pre><code class="language-javascript">function * foo(x) {
 
     var y = 2 * (yield (x + 1));
@@ -193,4 +193,24 @@ b.next() // { value:6, done:false }
 b.next(12) // { value:8, done:false } 
 
 b.next(13) // { value:42, done:true }</code></pre>
-```
+
+## 如何阻止冒泡
+w3c的方法是e.stopPropagation()，
+
+IE则是使用e.cancelBubble = true；
+
+### 什么是冒泡事件？
+如在一个按钮是绑定一个”click”事件，那么”click”事件会依次在它的父级元素中被触发。
+
+stopPropagation就是阻止目标元素的事件冒泡到父级元素。
+
+兼容写法：
+<pre><code class="language-javascript">window.event? window.event.cancelBubble = true : e.stopPropagation();
+</code></pre>
+
+<!-- <pre><code class="language-javascript"></code></pre> -->
+
+## 如何改变默认行为
+preventDefault它是事件对象(Event)的一个方法，作用是取消一个目标元素的默认行为。
+
+元素必须有默认行为才能被取消，如果元素本身就没有默认行为，调用当然就无效了。
