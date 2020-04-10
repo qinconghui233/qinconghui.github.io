@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '面试之路——JavaScript相关问题'
+title: '前端学习——JavaScript相关问题'
 subtitle: '面试准备'
 date: 2020-04-07
 categories: 技术
