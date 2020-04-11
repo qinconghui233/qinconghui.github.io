@@ -11,6 +11,11 @@ tags: 网络 前端开发
 ## javascript数据基本类型有哪些？
 null、boolean、string、undefined、number、symbol(ES6新加)
 
+### JavaScript3种对象类型
+Object、Date、Array
+
+### Number()转换为数字，String()转化为字符串，Boolean()转化为布尔值
+
 ## const var let
 
 const定义的变量不可以修稿，而且必须初始化
@@ -304,5 +309,51 @@ APP
                             }
                             +--->render()
 
+## JavaScript 常见的设计模式
+1.工厂模式
+简单的工厂模式可以理解为解决多个相似的问题；
+2.单例模式
+只能被实例化(构造函数给实例添加属性与方法)一次
+3.沙箱模式
+将一些函数放到自执行函数里面，但要用闭包暴露接口，用变量接收暴露的接口，再调用里面的值，否则无法使用里面的值
+<pre><code class="language-javascript">
+let sanboxMode=(function(){
+  function sayName();
+  function sayAge();
+  return{
+    sayName:sayName,
+    sayAge:sayAge
+  }
+})()
+</code></pre>
+4.发布者订阅模式
+<pre><code class="language-javascript">
+//发布者与订阅模式
+    var shoeObj = {}; // 定义发布者
+    shoeObj.list = []; // 缓存列表 存放订阅者回调函数
 
+    // 增加订阅者
+    shoeObj.listen = function(fn) {
+        shoeObj.list.push(fn); // 订阅消息添加到缓存列表
+    }
 
+    // 发布消息
+    shoeObj.trigger = function() {
+            for (var i = 0, fn; fn = this.list[i++];) {
+                fn.apply(this, arguments);//第一个参数只是改变fn的this,
+            }
+        }
+     // 小红订阅如下消息
+    shoeObj.listen(function(color, size) {
+        console.log("颜色是：" + color);
+        console.log("尺码是：" + size);
+    });
+
+    // 小花订阅如下消息
+    shoeObj.listen(function(color, size) {
+        console.log("再次打印颜色是：" + color);
+        console.log("再次打印尺码是：" + size);
+    });
+    shoeObj.trigger("红色", 40);
+    shoeObj.trigger("黑色", 42);  
+</code></pre>
