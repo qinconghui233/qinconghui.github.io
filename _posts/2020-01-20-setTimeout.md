@@ -151,3 +151,45 @@ js通过事件循环来实现异步
     }
     </code>
 </pre>
+
+2.利用ES6引入let关键字
+<pre><code class="language-javascript">
+    for(let i = 0;i < 5; i++) {
+        setTimeout(function timer(){
+            console.log(i);
+        }, i * 1000);
+    }
+    </code>
+</pre>
+for 循环头部的let 声明还会有一个特殊的行为。这个行为指出变量在循环过程中不止被声明一次，每次迭代都会声明。随后的每个迭代都会使用上一个迭代结束时的值来初始化这个变量。
+
+3.利用ES5引入的bind函数
+<pre><code class="language-javascript">
+    for (var i=1; i<=5; i++) {
+        setTimeout( function timer(i) {
+            console.log(i);
+        }.bind(null,i), i*1000 );
+    }
+</pre>
+
+4.利用setTimeout第三个参数
+<pre><code class="language-javascript">
+    for (var i=1; i<=5; i++) {
+        setTimeout( function timer(i) {
+            console.log(i);    
+        }, i*1000,i );
+    }
+</pre>
+5.把setTimeout用一个方法单独出来形成闭包
+<pre><code class="language-javascript">
+    var loop = function (i) {
+        setTimeout(function timer() {
+            console.log(i);  
+        }, i*1000);
+    };
+    for (var i = 1;i <= 5; i++) {
+        loop(i);
+    }
+</pre>
+
+[原文地址](https://www.jianshu.com/p/3e482748369d)
